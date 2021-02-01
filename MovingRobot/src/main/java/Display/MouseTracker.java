@@ -11,11 +11,14 @@ public class MouseTracker implements MouseInputListener {
         System.out.println("MOVED1");
         RunRobot.display.x = e.getX();
         RunRobot.display.y = e.getY();
+
+        if(RunRobot.display.obstacleMode){
+            
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("MOVED");
     }
 
     @Override
