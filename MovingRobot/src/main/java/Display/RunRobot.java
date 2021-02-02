@@ -1,5 +1,6 @@
 package Display;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import Constraints.CollisionTracker;
@@ -14,6 +15,7 @@ public class RunRobot {
     public static ArrayList<Motor> motors;
     public static MainCode.Robot timedRobot;
     public static ArrayList<Obstacle> obsList;
+    public static ArrayList<Point> pointList;
 
     public RunRobot(){
         CollisionTracker.setFieldLines();

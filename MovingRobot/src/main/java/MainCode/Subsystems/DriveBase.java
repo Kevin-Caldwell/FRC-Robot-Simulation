@@ -1,11 +1,8 @@
 package MainCode.Subsystems;
 
-import Display.Command;
 import Display.Motor;
 import Display.RunRobot;
 import Display.Subsystem;
-import MainCode.Commands.DoNothing;
-import MainCode.Commands.DriveForward;
 import MainCode.Commands.TankDrive;
 
 public class DriveBase extends Subsystem{
@@ -60,7 +57,5 @@ public class DriveBase extends Subsystem{
     public void initDefaultCommand() {
         System.out.println("Calling Default Command...");
         new TankDrive();
-        //new DriveForward();
-        //new DoNothing();
     }
 }

@@ -1,6 +1,7 @@
 package Display;
 
 import java.awt.event.MouseEvent;
+import java.awt.Point;
 
 import javax.swing.event.MouseInputListener;
 
@@ -8,17 +9,15 @@ public class MouseTracker implements MouseInputListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("MOVED1");
-        RunRobot.display.x = e.getX();
-        RunRobot.display.y = e.getY();
 
-        if(RunRobot.display.obstacleMode){
-            
-        }
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(RunRobot.display.obstacleMode){
+            RunRobot.pointList.add(new Point(e.getX(), e.getY()));
+        }
     }
 
     @Override
