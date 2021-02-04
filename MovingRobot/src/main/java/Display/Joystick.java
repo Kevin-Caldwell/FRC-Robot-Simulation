@@ -4,16 +4,16 @@ public class Joystick {
     private double x = 0;
     private double y = 0;
 
-    public Joystick(){
+    public Joystick() {
 
     }
 
-    public double get(char axis){
+    public double get(char axis) {
         if (axis == 'x') {
             return x;
-        } else if (axis == 'y'){
+        } else if (axis == 'y') {
             return y;
-        }        
+        }
         return 0;
     }
 

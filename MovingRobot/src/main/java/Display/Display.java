@@ -3,9 +3,13 @@ package Display;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import GameConstraints.Game;
+
 //import Constraints.Field;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Display extends JFrame {
 
@@ -31,7 +35,7 @@ public class Display extends JFrame {
     public Display() {
         System.out.println("Starting Display...");
 
-        //addMouseListener(new MouseTracker());
+        // addMouseListener(new MouseTracker());
 
         b = new RobotPaint();
         b.setBounds(0, 0, 500, 500);
@@ -52,14 +56,42 @@ public class Display extends JFrame {
         addObstacle.setBounds(500, 120, 150, 50);
         addObstacle.addActionListener(new AddObstacle());
 
+        JButton resetButton = new JButton("Reset Position");
+        resetButton.setBounds(500, 200, 150, 50);
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Robot.posX = Robot.START_X;
+                Robot.posY = Robot.START_Y;
+                Robot.theta = Robot.START_THETA;
+
+                RunRobot.display.axis1.setX(0);
+                RunRobot.display.axis1.setY(0);
+                RunRobot.display.axis2.setX(0);
+                RunRobot.display.axis2.setY(0);
+            }
+        });
+
+        JButton startGame = new JButton("Start Game");
+        startGame.setBounds(500, 280, 150, 50);
+        startGame.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Game();
+            }
+        });
+
         add(b);
         add(j1);
         add(j2);
         add(addObstacle);
+        add(resetButton);
+        add(startGame);
 
-        //setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //setUndecorated(true);
-        //setVisible(true);
+        // setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // setUndecorated(true);
+        // setVisible(true);
         setSize(new Dimension(750, 750));
         setLayout(null);
         setVisible(true);

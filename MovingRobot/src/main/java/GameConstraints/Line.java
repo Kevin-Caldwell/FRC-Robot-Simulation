@@ -1,4 +1,4 @@
-package Constraints;
+package GameConstraints;
 
 import java.awt.Point;
 
@@ -11,13 +11,13 @@ public class Line {
     public double x2 = 0;
     public double y2 = 0;
 
-    public Line(int a, int b, int c){
+    public Line(int a, int b, int c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    public Line(int x1, int y1, int x2, int y2){
+    public Line(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -28,7 +28,7 @@ public class Line {
         c = x1 * y2 - x2 * y1;
     }
 
-    public Line(Point p1, Point p2){
+    public Line(Point p1, Point p2) {
         x1 = p1.getX();
         y1 = p1.getY();
 

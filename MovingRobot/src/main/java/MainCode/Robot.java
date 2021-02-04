@@ -1,16 +1,17 @@
 package MainCode;
 
-
 import Display.TimedRobot;
+import MainCode.Commands.DoNothing;
+import MainCode.Commands.DriveForward;
+import MainCode.Commands.TankDrive;
 import MainCode.Subsystems.DriveBase;
 
-public class Robot extends TimedRobot{
+public class Robot extends TimedRobot {
 
-    
     public static OI m_oi;
     public static DriveBase dt;
 
-    public Robot(){
+    public Robot() {
         System.out.println("Initializing IO...");
         m_oi = new OI();
 
@@ -24,7 +25,7 @@ public class Robot extends TimedRobot{
      */
     @Override
     public void robotInit() {
-       
+        new DoNothing();
     }
 
     /**
@@ -67,7 +68,7 @@ public class Robot extends TimedRobot{
      */
     @Override
     public void autonomousInit() {
-
+        new DriveForward();
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
          * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -86,7 +87,7 @@ public class Robot extends TimedRobot{
      */
     @Override
     public void autonomousPeriodic() {
-        
+
     }
 
     @Override
@@ -95,6 +96,7 @@ public class Robot extends TimedRobot{
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
+        new TankDrive();
     }
 
     /**
@@ -110,5 +112,6 @@ public class Robot extends TimedRobot{
      */
     @Override
     public void testPeriodic() {
+
     }
 }

@@ -3,8 +3,8 @@ package Display;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import Constraints.CollisionTracker;
-import Constraints.Obstacle;
+import GameConstraints.CollisionTracker;
+import GameConstraints.Obstacle;
 
 public class RunRobot {
 
@@ -16,14 +16,15 @@ public class RunRobot {
     public static MainCode.Robot timedRobot;
     public static ArrayList<Obstacle> obsList;
     public static ArrayList<Point> pointList;
+    public static Command currCommand;
 
-    public RunRobot(){
+    public RunRobot() {
         CollisionTracker.setFieldLines();
         obsList = new ArrayList<Obstacle>();
         obsList.add(Obstacle.getObs1());
 
         System.out.println("Creating Display...");
-        
+
         System.out.println("Display Initialized. initializing Display.Robot...");
         RunRobot.robot = new Robot();
         System.out.println("Robot created. Starting new Thread...");
@@ -31,5 +32,5 @@ public class RunRobot {
         System.out.println("Robot Successfully Initalized...");
 
     }
-    
+
 }

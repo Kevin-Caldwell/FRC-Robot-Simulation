@@ -1,4 +1,4 @@
-package Constraints;
+package GameConstraints;
 
 import Display.Robot;
 import Display.RunRobot;
@@ -83,7 +83,7 @@ public class CollisionTracker {
         for (Line l1 : RobotLines) {
             for (Line l2 : FieldLines) {
                 if (collided(l1, l2)) {
-                    System.out.println("HOOOOoo");
+                    // System.out.println("HOOOOoo");
                     return true;
                 }
             }
@@ -93,7 +93,7 @@ public class CollisionTracker {
             for (Line l1 : RobotLines) {
                 for (Line l2 : obs.lines) {
                     if (collided(l1, l2)) {
-                        System.out.println("HOOOOoo");
+                        // System.out.println("HOOOOoo");
                         return true;
                     }
                 }

@@ -1,6 +1,6 @@
 package Display;
 
-import Constraints.CollisionTracker;
+import GameConstraints.CollisionTracker;
 import MainCode.Subsystems.DriveBase;
 
 public class KinematicsThread extends Thread {
@@ -8,34 +8,33 @@ public class KinematicsThread extends Thread {
     @Override
     public void run() {
         try {
-            sleep(1000);
+            sleep(700);
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
         while (!isInterrupted()) {
 
             try {
-                sleep(50);
+                sleep(5);
 
                 if (!RunRobot.robot.equals(null)) {
                     RunRobot.robot.calcKinematics();
                     // System.out.println("ANGLE: " + Robot.theta + " XPos: "
-                    //         + Robot.posX + " YPos: " + Robot.posY);
+                    // + Robot.posX + " YPos: " + Robot.posY);
                     CollisionTracker.getBoundingPoints();
+                    // System.out.println(CollisionTracker.RobotBounds[0]);
 
-                    //System.out.println(CollisionTracker.RobotBounds[0]);
-
-                    if(CollisionTracker.robotCollided()){
-                        //Robot.theta *= -1;
+                    if (CollisionTracker.robotCollided()) {
+                        // Robot.theta *= -1;
                         DriveBase.runLeftSideDrive(0);
                         DriveBase.runRightSideDrive(0);
 
-                        if(RunRobot.display.axis1.get('y') != 0){
+                        if (RunRobot.display.axis1.get('y') != 0) {
                             RunRobot.display.axis1.setX(0);
                             RunRobot.display.axis1.setY(0);
                             RunRobot.display.axis2.setX(0);
                             RunRobot.display.axis2.setY(0);
-                            //System.err.println("oooof");
+                            // System.err.println("oooof");
                         }
                     }
 
@@ -43,7 +42,6 @@ public class KinematicsThread extends Thread {
                     RunRobot.display.j1.repaint();
                     RunRobot.display.j2.repaint();
                     RunRobot.display.repaint();
-
 
                 } else {
                     System.out.println("DOUBLE YEET");

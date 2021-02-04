@@ -21,7 +21,6 @@ public class KeyControls implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // System.out.println("Key Pressed: " + KeyEvent.getKeyText(e.getKeyCode()));
 
-
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 // System.out.println("yes up");

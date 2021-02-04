@@ -10,12 +10,11 @@ public class MouseTracker implements MouseInputListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(RunRobot.display.obstacleMode){
+        if (RunRobot.display.obstacleMode) {
             RunRobot.pointList.add(new Point(e.getX(), e.getY()));
         }
     }
@@ -39,5 +38,5 @@ public class MouseTracker implements MouseInputListener {
     @Override
     public void mouseMoved(MouseEvent e) {
     }
-    
+
 }

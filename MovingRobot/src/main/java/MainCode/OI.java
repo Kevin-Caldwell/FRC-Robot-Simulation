@@ -27,7 +27,7 @@ public class OI {
 	public double right() {
 		if (RunRobot.display != null) {
 			double rightdrivestick = RunRobot.display.axis1.get('y') / 50;
-			//System.out.println(rightdrivestick);
+			// System.out.println(rightdrivestick);
 			if (Math.abs(rightdrivestick) < 0.05)
 				return 0.0;
 			else

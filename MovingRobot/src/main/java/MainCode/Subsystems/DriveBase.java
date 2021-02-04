@@ -5,7 +5,7 @@ import Display.RunRobot;
 import Display.Subsystem;
 import MainCode.Commands.TankDrive;
 
-public class DriveBase extends Subsystem{
+public class DriveBase extends Subsystem {
 
     public static Motor leftDriveFront = new Motor(-1);
     public static Motor leftDriveMiddle = new Motor(-1);
@@ -15,8 +15,6 @@ public class DriveBase extends Subsystem{
     public static Motor rightDriveBack = new Motor(1);
 
     public boolean reverse = false;
-
-    
 
     public DriveBase() {
         RunRobot.motors.add(leftDriveFront);
@@ -33,7 +31,7 @@ public class DriveBase extends Subsystem{
     }
 
     public static void runLeftSideDrive(double leftDriveStick) {
-        //System.out.println("runnig leftsidedrive");
+        // System.out.println("runnig leftsidedrive");
 
         leftDriveFront.set(leftDriveStick);
         leftDriveMiddle.set(leftDriveStick);
@@ -43,7 +41,7 @@ public class DriveBase extends Subsystem{
     }
 
     public static void runRightSideDrive(double rightDriveStick) {
-        //System.out.println("runnig rightsidedrive");
+        // System.out.println("runnig rightsidedrive");
 
         rightDriveFront.set(rightDriveStick);
         rightDriveMiddle.set(rightDriveStick);

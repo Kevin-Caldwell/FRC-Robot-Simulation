@@ -8,7 +8,7 @@ public class Motor {
         this.DeviceNumber = DeviceNumber;
     }
 
-    public void set(double speed){
+    public void set(double speed) {
         this.speed = speed;
     }
 

@@ -10,10 +10,10 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
-import Constraints.CollisionTracker;
-import Constraints.FieldConstraints;
-import Constraints.Line;
-import Constraints.Obstacle;
+import GameConstraints.CollisionTracker;
+import GameConstraints.FieldConstraints;
+import GameConstraints.Line;
+import GameConstraints.Obstacle;
 
 public class RobotPaint extends JPanel {
 
@@ -54,7 +54,7 @@ public class RobotPaint extends JPanel {
                 ShowIntersection(g2d);
             if (track)
                 DrawTracker(g2d);
-            //DrawBalls(g2d);
+            // DrawBalls(g2d);
         } else {
             System.out.println("YEET");
         }
@@ -110,8 +110,8 @@ public class RobotPaint extends JPanel {
     public void ShowIntersection(Graphics2D g2d) {
         int r = 10;
 
-        for (Constraints.Line l1 : CollisionTracker.RobotLines) {
-            for (Constraints.Line l2 : CollisionTracker.FieldLines) {
+        for (GameConstraints.Line l1 : CollisionTracker.RobotLines) {
+            for (GameConstraints.Line l2 : CollisionTracker.FieldLines) {
                 Point p1 = CollisionTracker.GetPointOfIntersection(l1, l2);
                 g2d.setColor(Color.blue);
 
@@ -139,7 +139,7 @@ public class RobotPaint extends JPanel {
         if (RunRobot.obsList != null) {
             for (Obstacle obstacle : RunRobot.obsList) {
                 for (Line line : obstacle.lines) {
-                    //System.out.println("hi");
+                    // System.out.println("hi");
                     g2d.drawLine((int) line.x1, (int) line.y1, (int) line.x2, (int) line.y2);
                 }
             }

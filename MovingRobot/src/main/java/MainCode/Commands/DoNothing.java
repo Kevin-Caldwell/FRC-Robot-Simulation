@@ -3,7 +3,7 @@ package MainCode.Commands;
 import Display.Command;
 import MainCode.Subsystems.DriveBase;
 
-public class DoNothing extends Command{
+public class DoNothing extends Command {
     public DoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,7 +21,7 @@ public class DoNothing extends Command{
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-        //System.out.println("Running execute");
+        // System.out.println("Running execute");
         double inputL = 0;
         double inputR = 0;
 
@@ -36,7 +36,7 @@ public class DoNothing extends Command{
 
     // Called once after isFinished returns true
     public void end() {
-        
+
     }
 
     // Called when another command which requires one or more of the same

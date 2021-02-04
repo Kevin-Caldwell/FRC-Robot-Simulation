@@ -7,17 +7,30 @@ public class Command implements Runnable {
 
     public Command() {
         isRunning = true;
+
+        if (RunRobot.currCommand != null) {
+            System.out.println("Command already running");
+            RunRobot.currCommand.forceEnd();
+            System.out.println("the command should've ended");
+        }
+
+        RunRobot.currCommand = this;
     }
 
     public void initialize() {
 
         isRunning = true;
-        t = new Thread(this, "Command Thread");
+        t = new Thread(this, this.getClass().getSimpleName() + " Command Thread");
         t.start();
     }
 
     public void execute() {
         System.out.println("execute");
+    }
+
+    public void forceEnd() {
+        System.out.println("Ending Command...");
+        isRunning = false;
     }
 
     public void end() {
@@ -36,12 +49,13 @@ public class Command implements Runnable {
             execute();
             // System.out.println("HALLO?");
             try {
-                Thread.sleep(1000);
+                // System.out.println(isRunning);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
         }
+
+        System.out.println("Command ended");
     }
 }
