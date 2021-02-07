@@ -1,6 +1,8 @@
 package MainCode;
 
-import Display.TimedRobot;
+import Background.TimedRobot;
+import Background.Sensors.Gyro;
+import Background.Sensors.Ultrasonic;
 import MainCode.Commands.DoNothing;
 import MainCode.Commands.DriveForward;
 import MainCode.Commands.TankDrive;
@@ -11,12 +13,19 @@ public class Robot extends TimedRobot {
     public static OI m_oi;
     public static DriveBase dt;
 
+    public static Ultrasonic distanceReader;
+    public static Gyro angleReader;
+
     public Robot() {
         System.out.println("Initializing IO...");
         m_oi = new OI();
 
         System.out.println("Initiallizing DriveBase Subsystem...");
         dt = new DriveBase();
+
+        distanceReader = new Ultrasonic(0);
+        angleReader = new Gyro();
+
     }
 
     /**

@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 import java.awt.Color;
 import java.awt.Rectangle;

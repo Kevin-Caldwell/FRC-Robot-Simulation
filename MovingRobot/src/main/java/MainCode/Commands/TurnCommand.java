@@ -4,12 +4,14 @@ import Background.Command;
 import MainCode.Robot;
 import MainCode.Subsystems.DriveBase;
 
-public class DriveForward extends Command {
-    public DriveForward() {
+public class TurnCommand extends Command{
+    double initialAngle;
+    public TurnCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         super();
         System.out.println("superclass called");
+        initialAngle = Robot.angleReader.getAngle();
         initialize();
     }
 
@@ -21,18 +23,16 @@ public class DriveForward extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    @Override
     public void execute() {
         // System.out.println("Running execute");
-        double inputL = 1;
-        double inputR = 1;
-
-        //System.out.println(Robot.distanceReader.getDistance() + " : "
-          //      + (Robot.distanceReader.getDistance() <= 75 + Background.Robot.ROBOT_LENGTH / 2));
-
-        if (Robot.distanceReader.getDistance() <= Background.Robot.ROBOT_LENGTH) {
-                new TurnCommand();
+        System.err.println(Robot.angleReader.getAngle());
+        if(Math.abs(Robot.angleReader.getAngle() - initialAngle) >= Math.PI / 4){
+            end();
+            
         }
+
+        double inputL = -1;
+        double inputR = 1;
 
         DriveBase.runLeftSideDrive(inputL);
         DriveBase.runRightSideDrive(inputR);
@@ -51,5 +51,5 @@ public class DriveForward extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     public void interrupted() {
-    }
+    }   
 }

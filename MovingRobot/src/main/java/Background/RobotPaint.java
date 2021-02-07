@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 //import Field;
 
@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+import Background.Sensors.Ultrasonic;
 import GameConstraints.CollisionTracker;
 import GameConstraints.FieldConstraints;
 import GameConstraints.Line;
@@ -54,6 +55,8 @@ public class RobotPaint extends JPanel {
                 ShowIntersection(g2d);
             if (track)
                 DrawTracker(g2d);
+
+            paintUltrasonics(g2d);
             // DrawBalls(g2d);
         } else {
             System.out.println("YEET");
@@ -67,9 +70,8 @@ public class RobotPaint extends JPanel {
     }
 
     public void paintRobot(Graphics2D g2d) {
-        Rectangle rect2 = new Rectangle((int) Robot.posX - RunRobot.robot.ROBOT_LENGTH / 2,
-                (int) Robot.posY - RunRobot.robot.ROBOT_WIDTH / 2, RunRobot.robot.ROBOT_LENGTH,
-                RunRobot.robot.ROBOT_WIDTH);
+        Rectangle rect2 = new Rectangle((int) Robot.posX - Robot.ROBOT_LENGTH / 2,
+                (int) Robot.posY - Robot.ROBOT_WIDTH / 2, Robot.ROBOT_LENGTH, Robot.ROBOT_WIDTH);
         g2d.rotate(Robot.theta * 1, (int) Robot.posX, (int) Robot.posY);
         g2d.draw(rect2);
     }
@@ -80,6 +82,18 @@ public class RobotPaint extends JPanel {
 
         g2d.drawLine((int) Robot.posX, (int) Robot.posY, (int) Robot.posX + length, (int) Robot.posY);
         g2d.rotate(-1 * Robot.theta, (int) Robot.posX, (int) Robot.posY);
+    }
+
+    public void paintUltrasonics(Graphics2D g2d) {
+        int length = 100;
+        if (Robot.ultrasonics != null) {
+            System.out.println("printing");
+            for (Ultrasonic u : Robot.ultrasonics) {
+                g2d.drawLine((int) Robot.posX, (int) Robot.posY,
+                        (int) Robot.posX + (int) (length * Math.cos(Robot.theta + u.angle)),
+                        (int) Robot.posY + (int) (length * Math.sin(Robot.theta + u.angle)));
+            }
+        }
     }
 
     public void DrawBalls(Graphics2D g2d) {

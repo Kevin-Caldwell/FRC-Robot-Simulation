@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 public class Joystick {
     private double x = 0;

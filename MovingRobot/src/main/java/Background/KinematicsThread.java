@@ -1,6 +1,7 @@
-package Display;
+package Background;
 
 import GameConstraints.CollisionTracker;
+import MainCode.Robot;
 import MainCode.Subsystems.DriveBase;
 
 public class KinematicsThread extends Thread {
@@ -8,7 +9,7 @@ public class KinematicsThread extends Thread {
     @Override
     public void run() {
         try {
-            sleep(700);
+            sleep(1000);
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
@@ -25,6 +26,7 @@ public class KinematicsThread extends Thread {
                     // System.out.println(CollisionTracker.RobotBounds[0]);
 
                     if (CollisionTracker.robotCollided()) {
+                        RunRobot.currCommand.isRunning = false;
                         // Robot.theta *= -1;
                         DriveBase.runLeftSideDrive(0);
                         DriveBase.runRightSideDrive(0);
@@ -38,10 +40,13 @@ public class KinematicsThread extends Thread {
                         }
                     }
 
-                    RunRobot.display.b.repaint();
-                    RunRobot.display.j1.repaint();
-                    RunRobot.display.j2.repaint();
-                    RunRobot.display.repaint();
+                    if (RunRobot.display != null) {
+
+                        RunRobot.display.b.repaint();
+                        RunRobot.display.j1.repaint();
+                        RunRobot.display.j2.repaint();
+                        RunRobot.display.repaint();
+                    }
 
                 } else {
                     System.out.println("DOUBLE YEET");

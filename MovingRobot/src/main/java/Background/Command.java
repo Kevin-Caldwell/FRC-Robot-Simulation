@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 public class Command implements Runnable {
 
@@ -10,7 +10,7 @@ public class Command implements Runnable {
 
         if (RunRobot.currCommand != null) {
             System.out.println("Command already running");
-            RunRobot.currCommand.forceEnd();
+            RunRobot.currCommand.isRunning = false;
             System.out.println("the command should've ended");
         }
 
@@ -26,11 +26,6 @@ public class Command implements Runnable {
 
     public void execute() {
         System.out.println("execute");
-    }
-
-    public void forceEnd() {
-        System.out.println("Ending Command...");
-        isRunning = false;
     }
 
     public void end() {

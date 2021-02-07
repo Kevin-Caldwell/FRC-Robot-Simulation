@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 import java.awt.Point;
 import java.util.ArrayList;

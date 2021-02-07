@@ -1,6 +1,6 @@
 package GameConstraints;
 
-import Display.RunRobot;
+import Background.RunRobot;
 import MainCode.Robot;
 
 public class Game extends Thread {

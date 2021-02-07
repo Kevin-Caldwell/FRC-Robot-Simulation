@@ -1,4 +1,4 @@
-package Display;
+package Background;
 
 import GameConstraints.Timer;
 
