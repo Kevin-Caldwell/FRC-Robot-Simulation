@@ -5,6 +5,9 @@ import java.awt.Point;
 
 import javax.swing.event.MouseInputListener;
 
+/**
+ * MouseInputListener for adding Points in Obstacle Mode.
+ */
 public class MouseTracker implements MouseInputListener {
 
     @Override

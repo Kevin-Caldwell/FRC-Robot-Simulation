@@ -11,6 +11,10 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Main JFrame used for displaying Canvas and Buttons.
+ * @author Kevin Caldwell
+ */
 public class Display extends JFrame {
 
     /**
@@ -34,8 +38,6 @@ public class Display extends JFrame {
 
     public Display() {
         System.out.println("Starting Display...");
-
-        // addMouseListener(new MouseTracker());
 
         b = new RobotPaint();
         b.setBounds(0, 0, 500, 500);
@@ -90,7 +92,6 @@ public class Display extends JFrame {
         add(startGame);
 
         // setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // setUndecorated(true);
         // setVisible(true);
         setSize(new Dimension(750, 750));
         setLayout(null);

@@ -18,6 +18,9 @@ public class RunRobot {
     public static ArrayList<Point> pointList;
     public static Command currCommand;
 
+    /**
+     * Creates a new Robot.
+     */
     public RunRobot() {
         CollisionTracker.setFieldLines();
         obsList = new ArrayList<Obstacle>();

@@ -5,11 +5,31 @@ import java.awt.Point;
 import Background.Robot;
 import Background.RunRobot;
 
+/**
+ * This class is used for calculating collisions.
+ * 
+ * @author Kevin Caldwell
+ */
 public class CollisionTracker {
 
+    /**
+     * Array stores the 4 vertices of the rectangular robot.
+     */
     public static Point[] RobotBounds = new Point[4];
+
+    /**
+     * Array stores the equations of the 4 edges of the rectangular robot.
+     */
     public static Line[] RobotLines = new Line[4];
+
+    /**
+     * Array stores the equations of the 4 edges of the Field.
+     */
     public static Line[] FieldLines = new Line[4];
+
+    /**
+     * This is a method used to set the FieldLines of the Field. Called once.
+     */
 
     public static void setFieldLines() {
         FieldLines[0] = new Line(FieldConstraints.UPPER_LEFT, FieldConstraints.UPPER_LEFT,
@@ -29,16 +49,20 @@ public class CollisionTracker {
         FieldLines[3] = new Line(500, 0, 0, 0);
     }
 
+    /**
+     * Calculates the Bounding points of the Robot, given the position of the Robot
+     * and the angle of the Robot.
+     */
     public static void getBoundingPoints() {
-        double tempx = (RunRobot.robot.ROBOT_LENGTH / 2) * Math.cos(Robot.theta)
-                - (RunRobot.robot.ROBOT_WIDTH / 2) * Math.sin(Robot.theta);
-        double tempy = (RunRobot.robot.ROBOT_LENGTH / 2) * Math.sin(Robot.theta)
-                + (RunRobot.robot.ROBOT_WIDTH / 2) * Math.cos(Robot.theta);
+        double tempx = (Robot.ROBOT_LENGTH / 2) * Math.cos(Robot.theta)
+                - (Robot.ROBOT_WIDTH / 2) * Math.sin(Robot.theta);
+        double tempy = (Robot.ROBOT_LENGTH / 2) * Math.sin(Robot.theta)
+                + (Robot.ROBOT_WIDTH / 2) * Math.cos(Robot.theta);
 
-        double tempx1 = (RunRobot.robot.ROBOT_LENGTH / 2) * (Math.cos(Math.PI + Robot.theta))
-                - (RunRobot.robot.ROBOT_WIDTH / 2) * Math.sin(Math.PI - Robot.theta);
-        double tempy1 = (RunRobot.robot.ROBOT_LENGTH / 2) * Math.sin(Math.PI - Robot.theta)
-                + (RunRobot.robot.ROBOT_WIDTH / 2) * Math.cos(Math.PI - Robot.theta);
+        double tempx1 = (Robot.ROBOT_LENGTH / 2) * (Math.cos(Math.PI + Robot.theta))
+                - (Robot.ROBOT_WIDTH / 2) * Math.sin(Math.PI - Robot.theta);
+        double tempy1 = (Robot.ROBOT_LENGTH / 2) * Math.sin(Math.PI - Robot.theta)
+                + (Robot.ROBOT_WIDTH / 2) * Math.cos(Math.PI - Robot.theta);
 
         RobotBounds[0] = new Point((int) Robot.posX - (int) tempx, (int) Robot.posY - (int) tempy);
         RobotBounds[1] = new Point((int) Robot.posX - (int) tempx1, (int) Robot.posY + (int) tempy1);
@@ -51,11 +75,23 @@ public class CollisionTracker {
         RobotLines[3] = new Line(RobotBounds[3], RobotBounds[0]);
     }
 
+    /**
+     * 
+     * @param l1 The first Line
+     * @param l2 The second Line
+     * @return Point of intersection of l1 and l2
+     * 
+     */
     public static Point GetPointOfIntersection(Line l1, Line l2) {
         return new Point((int) ((l1.b * l2.c - l2.b * l1.c) / (l1.a * l2.b - l2.a * l1.b)),
                 (int) ((l2.a * l1.c - l1.a * l2.c) / (l1.a * l2.b - l2.a * l1.b)));
     }
 
+    /**
+     * @param p A Point
+     * @param l A Line Segment
+     * @return Whether the point lies on the line segment
+     */
     public static boolean onLineSeg(Point p, Line l) {
         if ((int) getDistance(p, new Point((int) l.x1, (int) l.y1))
                 + (int) getDistance(p, new Point((int) l.x2, (int) l.y2)) == (int) getDistance(
@@ -64,10 +100,22 @@ public class CollisionTracker {
         return false;
     }
 
+    /**
+     * Uses the Pythagorean Theorem to get distance
+     * @param p1 The first Point
+     * @param p2 The second Point
+     * @return Distance between Points
+     */
     public static double getDistance(Point p1, Point p2) {
         return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
 
+    /**
+     * 
+     * @param l1 First Line
+     * @param l2 Second Line
+     * @return whether the two Lines have collided
+     */
     public static boolean collided(Line l1, Line l2) {
         double collx = (l1.b * l2.c - l2.b * l1.c) / (l1.a * l2.b - l2.a * l1.b);
         double colly = (l2.a * l1.c - l1.a * l2.c) / (l1.a * l2.b - l2.a * l1.b);
@@ -79,6 +127,12 @@ public class CollisionTracker {
         return false;
     }
 
+    /**
+     * This method checks if the robot has collided by checking if the edges of the
+     * robot have collided with the edges of the field and obstacles.
+     * 
+     * @return whether the robot has collided
+     */
     public static boolean robotCollided() {
         for (Line l1 : RobotLines) {
             for (Line l2 : FieldLines) {

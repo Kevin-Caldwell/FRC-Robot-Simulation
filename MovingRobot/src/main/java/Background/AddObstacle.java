@@ -8,12 +8,20 @@ import GameConstraints.Obstacle;
 
 import java.awt.Point;
 
+/**
+ * ActionListener for Switching between Drive Mode and Obstacle Mode.
+ * <p>Drive mode allows user to interact with the Robot.</p>
+ * <p>Obstacle Mode allows user to add more obstacles to the field.</p>
+ * @author Kevin Caldwell
+ */
 public class AddObstacle implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (RunRobot.display.obstacleMode) {
-            RunRobot.obsList.add(new Obstacle(RunRobot.pointList));
+            if (!RunRobot.pointList.isEmpty()) {
+                RunRobot.obsList.add(new Obstacle(RunRobot.pointList));
+            }
             RunRobot.pointList = new ArrayList<Point>();
         } else {
             RunRobot.pointList = new ArrayList<Point>();

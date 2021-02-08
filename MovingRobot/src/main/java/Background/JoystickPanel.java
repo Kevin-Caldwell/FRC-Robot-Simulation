@@ -5,6 +5,11 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+/**
+ * JPanel for Displaying Joysticks
+ * @author Kevin Caldwell
+ * 
+ */
 public class JoystickPanel extends JPanel {
 
     /**

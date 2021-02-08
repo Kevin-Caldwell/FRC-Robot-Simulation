@@ -3,6 +3,10 @@ package Background;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * KeyListener, not used.
+ * @author Kevin Caldwell
+ */
 public class KeyControls implements KeyListener {
 
     public boolean keyPressed;

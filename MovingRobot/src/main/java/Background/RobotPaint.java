@@ -16,6 +16,10 @@ import GameConstraints.FieldConstraints;
 import GameConstraints.Line;
 import GameConstraints.Obstacle;
 
+/**
+ * JPanel responsible for drawing the Robot, Obstacles and other debug features. 
+ * @author Kevin Caldwell
+ */
 public class RobotPaint extends JPanel {
 
     /**
@@ -63,12 +67,20 @@ public class RobotPaint extends JPanel {
         }
     }
 
+    /**
+     * DO NOT USE
+     * @param g2d
+     */
     public void DrawTracker(Graphics2D g2d) {
         g2d.drawRect(RunRobot.display.x, RunRobot.display.y, 50, 25);
         String str = Integer.toString(RunRobot.display.x) + " : " + Integer.toString(RunRobot.display.y);
         g2d.drawString(str, RunRobot.display.x, RunRobot.display.y);
     }
 
+    /**
+     * Draws the robot by drawing a rectangle with center ({@code posX},
+     * {@code posY}) and then rotating it by an angle of {@code theta}
+     */
     public void paintRobot(Graphics2D g2d) {
         Rectangle rect2 = new Rectangle((int) Robot.posX - Robot.ROBOT_LENGTH / 2,
                 (int) Robot.posY - Robot.ROBOT_WIDTH / 2, Robot.ROBOT_LENGTH, Robot.ROBOT_WIDTH);
@@ -76,6 +88,10 @@ public class RobotPaint extends JPanel {
         g2d.draw(rect2);
     }
 
+    /**
+     * Draws a vector displaying the direction the Robot is facing.
+     * @param g2d
+     */
     public void paintDirectionVector(Graphics2D g2d) {
         int length = 75;
         g2d.setColor(Color.GREEN);// 1.009
@@ -84,6 +100,9 @@ public class RobotPaint extends JPanel {
         g2d.rotate(-1 * Robot.theta, (int) Robot.posX, (int) Robot.posY);
     }
 
+    /**
+     * Does not function at the moment.
+     */
     public void paintUltrasonics(Graphics2D g2d) {
         int length = 100;
         if (Robot.ultrasonics != null) {
@@ -96,11 +115,10 @@ public class RobotPaint extends JPanel {
         }
     }
 
-    public void DrawBalls(Graphics2D g2d) {
-        g2d.drawOval((int) Robot.posX + 30, (int) Robot.posY, 20, 20);
-        g2d.drawOval((int) Robot.posX + 30, (int) Robot.posY - 20, 20, 20);
-    }
-
+    /**
+     * Draws a thick line along the boundaries of the Field
+     * @param g2d
+     */
     public void SetUpField(Graphics2D g2d) {
         g2d.setStroke(new BasicStroke(3));
         g2d.drawRect(FieldConstraints.UPPER_LEFT, FieldConstraints.UPPER_LEFT, FieldConstraints.WIDTH - 1,
@@ -108,6 +126,10 @@ public class RobotPaint extends JPanel {
         g2d.setStroke(new BasicStroke(1));
     }
 
+    /**
+     * Draws a circle of radius 10 pixels around the Boundary points of the robot
+     * @param g2d
+     */
     public void ShowBoundaryPoints(Graphics2D g2d) {
         int r = 10;
 
@@ -121,6 +143,12 @@ public class RobotPaint extends JPanel {
                 r, r);
     }
 
+    /**
+     * Draws a circle of radius 10 pixels on the points of intersection of of the
+     * Lines of the Robot and the Field
+     * 
+     * @param g2d
+     */
     public void ShowIntersection(Graphics2D g2d) {
         int r = 10;
 
@@ -148,6 +176,10 @@ public class RobotPaint extends JPanel {
         // }
     }
 
+    /**
+     * Draws all obstacles found in {@code RunRobot.obsList}
+     * @param g2d
+     */
     public void PaintObstacles(Graphics2D g2d) {
         g2d.setColor(Color.GRAY);
         if (RunRobot.obsList != null) {

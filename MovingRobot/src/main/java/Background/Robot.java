@@ -51,14 +51,14 @@ public class Robot {
         }
 
         // System.out.println("Net Speed: " + (lTor + rTor));
+        // Constants for controlling Angular and Linear Velocity
         int ANGLE_k = 2;
         int POS_k = 30;
 
-        // System.out.println("ltor: " + lTor + " : " + "rTor: " + rTor);
-
+        // Rotational Kkinematics
         theta -= (lTor - rTor) * TIME_INTERVAL / ANGLE_k;
 
-        // translational Kinematics
+        // Translational Kinematics
         posX += Math.cos(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
         posY += Math.sin(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
     }

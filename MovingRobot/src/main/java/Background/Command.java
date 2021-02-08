@@ -1,10 +1,20 @@
 package Background;
 
+/**
+ * Command superclass for all Commands. While {@code isRunning} is {@code true},
+ * the Command runs in a separate Thread. Once {@code isRunning} is
+ * {@code false}, the Thread terminates. When the command is initialized, the
+ * {@code currCommand} is terminated and this Command takes its place. 
+ * @author Kevin Caldwell
+ */
 public class Command implements Runnable {
 
     protected boolean isRunning = false;
     private Thread t;
 
+    /**
+     * Creates a new Command and starts a new Command Thread
+     */
     public Command() {
         isRunning = true;
 
@@ -24,6 +34,9 @@ public class Command implements Runnable {
         t.start();
     }
 
+    /**
+     * While the command is running, execute is called every 20 ms.
+     */
     public void execute() {
         System.out.println("execute");
     }
@@ -37,14 +50,15 @@ public class Command implements Runnable {
         end();
     }
 
+    /**
+     * Execute is called every 20 ms.
+     */
     @Override
     public void run() {
-        System.out.println("Robot Thread started\n");
+        System.out.println("Command Thread started\n");
         while (isRunning) {
             execute();
-            // System.out.println("HALLO?");
             try {
-                // System.out.println(isRunning);
                 Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
