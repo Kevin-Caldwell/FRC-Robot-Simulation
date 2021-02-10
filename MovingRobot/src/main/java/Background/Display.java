@@ -47,19 +47,19 @@ public class Display extends JFrame {
         b.addMouseListener(new MouseTracker());
 
         j1 = new JoystickPanel(axis1);
-        j1.setBounds(500, 0, 100, 100);
+        j1.setBounds(510, 0, 100, 100);
         j1.addMouseListener(new PointerTracker1());
 
         j2 = new JoystickPanel(axis2);
-        j2.setBounds(600, 0, 100, 100);
+        j2.setBounds(620, 0, 100, 100);
         j2.addMouseListener(new PointerTracker2());
 
         addObstacle = new JButton("Add obstacles");
-        addObstacle.setBounds(500, 120, 150, 50);
+        addObstacle.setBounds(510, 120, 150, 50);
         addObstacle.addActionListener(new AddObstacle());
 
         JButton resetButton = new JButton("Reset Position");
-        resetButton.setBounds(500, 200, 150, 50);
+        resetButton.setBounds(510, 210, 150, 50);
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,11 +71,14 @@ public class Display extends JFrame {
                 RunRobot.display.axis1.setY(0);
                 RunRobot.display.axis2.setX(0);
                 RunRobot.display.axis2.setY(0);
+                if(!RunRobot.currCommand.isRunning){
+                    MainCode.Robot.dt.initDefaultCommand();
+                }
             }
         });
 
         JButton startGame = new JButton("Start Game");
-        startGame.setBounds(500, 280, 150, 50);
+        startGame.setBounds(510, 280, 150, 50);
         startGame.addActionListener(new ActionListener() {
 
             @Override
@@ -84,20 +87,18 @@ public class Display extends JFrame {
             }
         });
 
-        add(b);
         add(j1);
         add(j2);
+        add(b);
         add(addObstacle);
         add(resetButton);
         add(startGame);
 
-        // setExtendedState(JFrame.MAXIMIZED_BOTH);
-        // setVisible(true);
         setSize(new Dimension(750, 750));
         setLayout(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        System.out.println("Canvas has focus: " + j1.requestFocusInWindow());
-        repaint();
+        System.out.println("Canvas has focus: " + b.requestFocusInWindow());
+        
     }
 }

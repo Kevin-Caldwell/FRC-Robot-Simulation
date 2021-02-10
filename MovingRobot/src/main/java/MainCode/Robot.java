@@ -3,7 +3,6 @@ package MainCode;
 import Background.TimedRobot;
 import Background.Sensors.Gyro;
 import Background.Sensors.Ultrasonic;
-import MainCode.Commands.DoNothing;
 import MainCode.Commands.DriveForward;
 import MainCode.Commands.TankDrive;
 import MainCode.Subsystems.DriveBase;
@@ -34,7 +33,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        new DoNothing();
+        //new DoNothing();
     }
 
     /**
@@ -78,6 +77,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         new DriveForward();
+  
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
          * switch(autoSelected) { case "My Auto": autonomousCommand = new

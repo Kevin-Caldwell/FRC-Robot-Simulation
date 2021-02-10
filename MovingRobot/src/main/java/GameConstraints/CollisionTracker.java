@@ -1,16 +1,15 @@
 package GameConstraints;
 
-import java.awt.Point;
-
 import Background.Robot;
 import Background.RunRobot;
+import MainCode.Subsystems.DriveBase;
 
 /**
  * This class is used for calculating collisions.
  * 
  * @author Kevin Caldwell
  */
-public class CollisionTracker {
+public class CollisionTracker extends Thread {
 
     /**
      * Array stores the 4 vertices of the rectangular robot.
@@ -28,9 +27,15 @@ public class CollisionTracker {
     public static Line[] FieldLines = new Line[4];
 
     /**
+     * Constructor starts Collision Thread
+     */
+    public CollisionTracker() {
+        this.setName("Collision Thread");
+    }
+
+    /**
      * This is a method used to set the FieldLines of the Field. Called once.
      */
-
     public static void setFieldLines() {
         FieldLines[0] = new Line(FieldConstraints.UPPER_LEFT, FieldConstraints.UPPER_LEFT,
                 FieldConstraints.UPPER_LEFT + FieldConstraints.WIDTH, FieldConstraints.UPPER_LEFT);
@@ -102,6 +107,7 @@ public class CollisionTracker {
 
     /**
      * Uses the Pythagorean Theorem to get distance
+     * 
      * @param p1 The first Point
      * @param p2 The second Point
      * @return Distance between Points
@@ -153,5 +159,34 @@ public class CollisionTracker {
 
         }
         return false;
+    }
+
+    // Calculates the bounding points for collision detection
+    @Override
+    public void run() {
+
+        while (true) {
+
+            CollisionTracker.getBoundingPoints();
+
+            // Collision logic : What the robot does after it collides?
+            if (CollisionTracker.robotCollided()) {
+                //System.out.println("collided");
+                // Terminates the current running Command and stops the robot from moving
+                RunRobot.currCommand.end();
+
+                DriveBase.runLeftSideDrive(0);
+                DriveBase.runRightSideDrive(0);
+
+                // Resets the Joystick Inputs
+                if (RunRobot.display.axis1.get('y') != 0) {
+                    RunRobot.display.axis1.setX(0);
+                    RunRobot.display.axis1.setY(0);
+                    RunRobot.display.axis2.setX(0);
+                    RunRobot.display.axis2.setY(0);
+                }
+
+            }
+        }
     }
 }

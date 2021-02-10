@@ -12,13 +12,13 @@ public class Robot {
 
     public static double speed = 0;
     public static double acceleration = 0;
-    public final double TIME_INTERVAL = 0.005;
+    public final double TIME_INTERVAL = 0.001;
     public final double MAX_SPEED = 1;
     public static final int ROBOT_LENGTH = 60;
     public static final int ROBOT_WIDTH = 30;
 
-    public static int START_X = 100;
-    public static int START_Y = 100;
+    public static double START_X = 100;
+    public static double START_Y = 100;
     public static double START_THETA = 0;
     public Command currentCommand;
     public static ArrayList<Ultrasonic> ultrasonics;
@@ -32,8 +32,6 @@ public class Robot {
 
         RunRobot.timedRobot = new MainCode.Robot();
         System.out.println("Motors initialized...");
-
-        new KinematicsThread().start();
     }
 
     public void calcKinematics() {
@@ -52,8 +50,8 @@ public class Robot {
 
         // System.out.println("Net Speed: " + (lTor + rTor));
         // Constants for controlling Angular and Linear Velocity
-        int ANGLE_k = 2;
-        int POS_k = 30;
+        double ANGLE_k = 2 / (1);
+        double POS_k = 30 / (1);
 
         // Rotational Kkinematics
         theta -= (lTor - rTor) * TIME_INTERVAL / ANGLE_k;

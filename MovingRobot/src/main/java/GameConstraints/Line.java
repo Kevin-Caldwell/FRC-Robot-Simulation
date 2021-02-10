@@ -1,7 +1,5 @@
 package GameConstraints;
 
-import java.awt.Point;
-
 /**
  * Line class used for tracking collisions. 
  * Stores lines of the form:

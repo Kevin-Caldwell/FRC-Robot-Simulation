@@ -15,8 +15,6 @@ public class TankDrive extends Command {
 
     // Called just before this Command runs the first time
     public void initialize() {
-        System.out.println("Tank Drive initialized...");
-
         super.initialize();
     }
 

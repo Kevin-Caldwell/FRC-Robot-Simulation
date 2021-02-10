@@ -1,7 +1,6 @@
 package MainCode.Commands;
 
 import Background.Command;
-import MainCode.Robot;
 import MainCode.Subsystems.DriveBase;
 
 public class DriveForward extends Command {
@@ -30,9 +29,7 @@ public class DriveForward extends Command {
         //System.out.println(Robot.distanceReader.getDistance() + " : "
           //      + (Robot.distanceReader.getDistance() <= 75 + Background.Robot.ROBOT_LENGTH / 2));
 
-        if (Robot.distanceReader.getDistance() <= Background.Robot.ROBOT_LENGTH) {
-                new TurnCommand();
-        }
+        //System.out.println(Robot.distanceReader.getDistance());
 
         DriveBase.runLeftSideDrive(inputL);
         DriveBase.runRightSideDrive(inputR);

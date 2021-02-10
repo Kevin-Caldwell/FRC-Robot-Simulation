@@ -40,7 +40,6 @@ public class TimedRobot implements Runnable {
         System.out.println("Robot Thread started\n");
         while (true) {
             autonomousPeriodic();
-            // System.out.println("HALLO?");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

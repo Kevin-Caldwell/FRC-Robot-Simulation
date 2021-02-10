@@ -1,6 +1,5 @@
 package GameConstraints;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -26,14 +25,14 @@ public class Obstacle {
 
     /**
      * Constructor stores Points and lines of Obstacle.
-     * @param pts An Arraylist containing all the points in the Obstacle
+     * @param pointList An Arraylist containing all the points in the Obstacle
      */
-    public Obstacle(ArrayList<Point> pts) {
+    public Obstacle(ArrayList<Point> pointList) {
         lines = new ArrayList<Line>();
-        for (int i = 0; i < pts.size() - 1; i++) {
-            lines.add(new Line(pts.get(i), pts.get(i + 1)));
+        for (int i = 0; i < pointList.size() - 1; i++) {
+            lines.add(new Line(pointList.get(i), pointList.get(i + 1)));
         }
-        lines.add(new Line(pts.get(0), pts.get(pts.size() - 1)));
+        lines.add(new Line(pointList.get(0), pointList.get(pointList.size() - 1)));
     }
 
     /**

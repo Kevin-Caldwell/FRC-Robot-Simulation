@@ -5,8 +5,9 @@ import Background.RunRobot;
 import GameConstraints.CollisionTracker;
 import GameConstraints.Line;
 import GameConstraints.Obstacle;
+import GameConstraints.Point;
 
-import java.awt.Point;
+import java.util.ArrayList;
 
 public class Ultrasonic {
     public double angle;
@@ -15,15 +16,19 @@ public class Ultrasonic {
         this.angle = angle;
         if (Robot.ultrasonics != null) {
             Robot.ultrasonics.add(this);
+        } else {
+            Robot.ultrasonics = new ArrayList<Ultrasonic>();
+            Robot.ultrasonics.add(this);
         }
     }
 
     public double getDistance() {
-        Point p = new Point((int) (Robot.posX + Robot.ROBOT_LENGTH / 2 * Math.cos(Robot.theta + angle)),
-                (int) (Robot.posY + Robot.ROBOT_LENGTH / 2 * Math.sin(Robot.theta + angle)));
+        int i = 10000;
+        Point p = new Point((int) (Robot.posX + i * Math.cos(Robot.theta + angle)),
+                (int) (Robot.posY + i * Math.sin(Robot.theta + angle)));
         Line l = new Line(new Point((int) Robot.posX, (int) Robot.posY), p);
 
-        double distance = 214;
+        double distance = 1000;
 
         for (Line l2 : CollisionTracker.FieldLines) {
             Point intersect = CollisionTracker.GetPointOfIntersection(l, l2);

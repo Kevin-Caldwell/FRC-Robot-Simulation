@@ -1,9 +1,9 @@
 package Background;
 
 import java.awt.event.MouseEvent;
-import java.awt.Point;
 
 import javax.swing.event.MouseInputListener;
+import GameConstraints.Point;
 
 /**
  * MouseInputListener for adding Points in Obstacle Mode.

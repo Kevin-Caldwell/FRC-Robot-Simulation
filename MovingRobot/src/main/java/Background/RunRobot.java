@@ -1,10 +1,10 @@
 package Background;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import GameConstraints.CollisionTracker;
 import GameConstraints.Obstacle;
+import GameConstraints.Point;
 
 public class RunRobot {
 
@@ -26,12 +26,20 @@ public class RunRobot {
         obsList = new ArrayList<Obstacle>();
         obsList.add(Obstacle.getObs1());
 
-        System.out.println("Creating Display...");
-
-        System.out.println("Display Initialized. initializing Display.Robot...");
         RunRobot.robot = new Robot();
         System.out.println("Robot created. Starting new Thread...");
+
+        System.out.println("Creating Display...");
         display = new Display();
+
+        System.out.println("Starting Kinematics Thread...");
+        new KinematicsThread().start();
+
+        System.out.println("Starting Collision Tracking Thread...");
+        new CollisionTracker().start();
+
+        System.out.println("Starting Repaint Thread...");
+        new RepaintThread().start();
         System.out.println("Robot Successfully Initalized...");
 
     }

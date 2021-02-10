@@ -21,7 +21,6 @@ public class Command implements Runnable {
         if (RunRobot.currCommand != null) {
             System.out.println("Command already running");
             RunRobot.currCommand.isRunning = false;
-            System.out.println("the command should've ended");
         }
 
         RunRobot.currCommand = this;
@@ -55,7 +54,7 @@ public class Command implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println("Command Thread started\n");
+        System.out.println(this.getClass().getSimpleName() + " Command Thread started...");
         while (isRunning) {
             execute();
             try {
@@ -65,6 +64,6 @@ public class Command implements Runnable {
             }
         }
 
-        System.out.println("Command ended");
+        System.out.println(this.getClass().getSimpleName() + " Command ended");
     }
 }

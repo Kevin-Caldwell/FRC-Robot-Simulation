@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import GameConstraints.Obstacle;
-
-import java.awt.Point;
+import GameConstraints.Point;
 
 /**
  * ActionListener for Switching between Drive Mode and Obstacle Mode.
@@ -29,7 +28,6 @@ public class AddObstacle implements ActionListener {
 
         RunRobot.display.obstacleMode = !RunRobot.display.obstacleMode;
         RunRobot.display.addObstacle.setText(RunRobot.display.obstacleMode ? "Exit Obstacle Mode" : "Add obstacles");
-        System.out.println("it works : " + RunRobot.display.obstacleMode);
 
     }
 

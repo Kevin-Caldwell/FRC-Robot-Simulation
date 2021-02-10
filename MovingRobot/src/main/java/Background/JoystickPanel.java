@@ -22,7 +22,6 @@ public class JoystickPanel extends JPanel {
 
     public JoystickPanel(Joystick j) {
         this.j = j;
-        System.out.println("HALLO");
     }
 
     @Override
