@@ -1,4 +1,4 @@
-package GameConstraints;
+package Background.PhysicsEngine;
 
 public class Point {
     public double x;

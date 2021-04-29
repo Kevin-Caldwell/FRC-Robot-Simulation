@@ -1,11 +1,11 @@
-package Background.Sensors;
+package Background.Robot.Sensors;
 
-import Background.Robot;
 import Background.RunRobot;
-import GameConstraints.CollisionTracker;
-import GameConstraints.Line;
-import GameConstraints.Obstacle;
-import GameConstraints.Point;
+import Background.PhysicsEngine.CollisionTracker;
+import Background.PhysicsEngine.Line;
+import Background.PhysicsEngine.Obstacle;
+import Background.PhysicsEngine.Point;
+import Background.Robot.Robot;
 
 import java.util.ArrayList;
 

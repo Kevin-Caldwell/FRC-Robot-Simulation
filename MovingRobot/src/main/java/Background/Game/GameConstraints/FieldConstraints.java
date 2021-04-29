@@ -1,4 +1,4 @@
-package GameConstraints;
+package Background.Game.GameConstraints;
 
 /**
  * This class stores the bounds of the field

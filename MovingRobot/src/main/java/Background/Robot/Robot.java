@@ -1,8 +1,11 @@
-package Background;
+package Background.Robot;
 
 import java.util.ArrayList;
 
-import Background.Sensors.Ultrasonic;
+import Background.RunRobot;
+import Background.Robot.Sensors.Ultrasonic;
+import Background.Robot.Components.Command;
+import Background.Robot.Components.Motor;
 
 public class Robot {
 
@@ -57,7 +60,12 @@ public class Robot {
         theta -= (lTor - rTor) * TIME_INTERVAL / ANGLE_k;
 
         // Translational Kinematics
-        posX += Math.cos(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
-        posY += Math.sin(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
+        double deltaX = Math.cos(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
+        double deltaY = Math.sin(theta) * TIME_INTERVAL * (lTor + rTor) * POS_k;
+
+        MainCode.Robot.encoder.updateDistance(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
+
+        posX += deltaX;
+        posY += deltaY;
     }
 }

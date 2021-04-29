@@ -1,4 +1,6 @@
-package Background;
+package Background.Graphics;
+
+import Background.RunRobot;
 
 public class RepaintThread extends Thread {
 
@@ -16,9 +18,6 @@ public class RepaintThread extends Thread {
             }
             if (RunRobot.display != null) {
                 RunRobot.display.repaint();
-                RunRobot.display.b.repaint();
-                RunRobot.display.j1.repaint();
-                RunRobot.display.j2.repaint();
             }
         }
     }

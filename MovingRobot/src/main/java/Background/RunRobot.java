@@ -2,9 +2,16 @@ package Background;
 
 import java.util.ArrayList;
 
-import GameConstraints.CollisionTracker;
-import GameConstraints.Obstacle;
-import GameConstraints.Point;
+import Background.Graphics.Display;
+import Background.Graphics.RepaintThread;
+import Background.PhysicsEngine.CollisionTracker;
+import Background.PhysicsEngine.KinematicsThread;
+import Background.PhysicsEngine.Obstacle;
+import Background.PhysicsEngine.Point;
+import Background.Robot.Robot;
+import Background.Robot.Components.Command;
+import Background.Robot.Components.Motor;
+import Background.Game.Game;
 
 public class RunRobot {
 
@@ -17,6 +24,7 @@ public class RunRobot {
     public static ArrayList<Obstacle> obsList;
     public static ArrayList<Point> pointList;
     public static Command currCommand;
+    public static Game currGame;
 
     /**
      * Creates a new Robot.

@@ -1,11 +1,12 @@
-package Background;
+package Background.Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import GameConstraints.Obstacle;
-import GameConstraints.Point;
+import Background.RunRobot;
+import Background.PhysicsEngine.Obstacle;
+import Background.PhysicsEngine.Point;
 
 /**
  * ActionListener for Switching between Drive Mode and Obstacle Mode.

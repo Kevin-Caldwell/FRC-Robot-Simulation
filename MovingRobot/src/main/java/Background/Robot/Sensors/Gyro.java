@@ -1,6 +1,6 @@
-package Background.Sensors;
+package Background.Robot.Sensors;
 
-import Background.Robot;
+import Background.Robot.Robot;
 
 public class Gyro {
 

@@ -1,4 +1,4 @@
-package GameConstraints;
+package Background.Game.GameConstraints;
 
 /**
  * Timer class for keepnig track of Game Time

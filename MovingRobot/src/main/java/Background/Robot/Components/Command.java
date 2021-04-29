@@ -1,4 +1,6 @@
-package Background;
+package Background.Robot.Components;
+
+import Background.RunRobot;
 
 /**
  * Command superclass for all Commands. While {@code isRunning} is {@code true},
@@ -9,7 +11,7 @@ package Background;
  */
 public class Command implements Runnable {
 
-    protected boolean isRunning = false;
+    public boolean isRunning = false;
     private Thread t;
 
     /**
@@ -19,7 +21,7 @@ public class Command implements Runnable {
         isRunning = true;
 
         if (RunRobot.currCommand != null) {
-            System.out.println("Command already running");
+            System.out.println(RunRobot.currCommand.getClass().getSimpleName() + " Command already running");
             RunRobot.currCommand.isRunning = false;
         }
 
@@ -41,12 +43,14 @@ public class Command implements Runnable {
     }
 
     public void end() {
-        isRunning = false;
+    }
+
+    public boolean isFinished(){
+        return false;
     }
 
     public void interrupted() {
         isRunning = false;
-        end();
     }
 
     /**
@@ -55,7 +59,8 @@ public class Command implements Runnable {
     @Override
     public void run() {
         System.out.println(this.getClass().getSimpleName() + " Command Thread started...");
-        while (isRunning) {
+        while (!isFinished() && isRunning) {
+            
             execute();
             try {
                 Thread.sleep(20);
@@ -63,6 +68,8 @@ public class Command implements Runnable {
                 e.printStackTrace();
             }
         }
+
+        end();
 
         System.out.println(this.getClass().getSimpleName() + " Command ended");
     }

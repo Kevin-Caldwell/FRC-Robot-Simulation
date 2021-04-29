@@ -1,15 +1,23 @@
-package Background;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import GameConstraints.Game;
+package Background.Graphics;
 
 //import Constraints.Field;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import Background.RunRobot;
+import Background.Game.AddObstacle;
+import Background.Game.Game;
+import Background.Input.Joystick;
+import Background.Input.Listeners.KeyListener.KeyControls;
+import Background.Input.Listeners.MouseListeners.MouseTracker;
+import Background.Input.Listeners.MouseListeners.PointerTracker1;
+import Background.Input.Listeners.MouseListeners.PointerTracker2;
+import Background.Robot.Robot;
 
 /**
  * Main JFrame used for displaying Canvas and Buttons.
@@ -35,12 +43,14 @@ public class Display extends JFrame {
 
     public boolean obstacleMode = false;
     public JButton addObstacle;
+    public JButton mode;
 
     public Display() {
         System.out.println("Starting Display...");
 
         b = new RobotPaint();
         b.setBounds(0, 0, 500, 500);
+        b.addKeyListener(new KeyControls());
 
         kc = new KeyControls();
         b.addKeyListener(kc);
@@ -87,12 +97,16 @@ public class Display extends JFrame {
             }
         });
 
+        mode = new JButton("Drive Mode");
+        mode.setBounds(510, 330, 150, 50);
+
         add(j1);
         add(j2);
         add(b);
         add(addObstacle);
         add(resetButton);
         add(startGame);
+        add(mode);
 
         setSize(new Dimension(750, 750));
         setLayout(null);

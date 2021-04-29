@@ -1,4 +1,4 @@
-package Background;
+package Background.Robot.Components;
 
 /**
  * Motor class.

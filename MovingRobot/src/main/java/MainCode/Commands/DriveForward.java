@@ -1,6 +1,7 @@
 package MainCode.Commands;
 
-import Background.Command;
+import Background.Robot.Components.Command;
+import MainCode.Robot;
 import MainCode.Subsystems.DriveBase;
 
 public class DriveForward extends Command {
@@ -37,12 +38,13 @@ public class DriveForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     public boolean isFinished() {
-        return false;
+        return Robot.encoder.distance > 50;
     }
 
     // Called once after isFinished returns true
     public void end() {
-
+        new TurnCommand(Math.PI / 2);
+        Robot.encoder.resetDistance();
     }
 
     // Called when another command which requires one or more of the same

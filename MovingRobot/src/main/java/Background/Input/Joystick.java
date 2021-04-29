@@ -1,4 +1,4 @@
-package Background;
+package Background.Input;
 
 /**
  * Joystick Class for keepig track of Input from the two Joystick axes.

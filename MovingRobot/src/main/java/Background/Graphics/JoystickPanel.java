@@ -1,9 +1,11 @@
-package Background;
+package Background.Graphics;
 
 import java.awt.Color;
 import java.awt.Rectangle;
 
 import javax.swing.JPanel;
+
+import Background.Input.Joystick;
 
 /**
  * JPanel for Displaying Joysticks

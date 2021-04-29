@@ -1,4 +1,4 @@
-package Background;
+package Background.Graphics;
 
 //import Field;
 
@@ -9,12 +9,13 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
-import GameConstraints.Point;
-import Background.Sensors.Ultrasonic;
-import GameConstraints.CollisionTracker;
-import GameConstraints.FieldConstraints;
-import GameConstraints.Line;
-import GameConstraints.Obstacle;
+import Background.RunRobot;
+import Background.Game.GameConstraints.FieldConstraints;
+import Background.PhysicsEngine.CollisionTracker;
+import Background.PhysicsEngine.Line;
+import Background.PhysicsEngine.Obstacle;
+import Background.PhysicsEngine.Point;
+import Background.Robot.Robot;
 
 /**
  * JPanel responsible for drawing the Robot, Obstacles and other debug features.
@@ -35,6 +36,9 @@ public class RobotPaint extends JPanel {
     public boolean intersection = false;
     public boolean track = false;
 
+    public static boolean auto = false;
+    public static boolean teleop = false;
+
     public RobotPaint() {
         super();
         System.out.println("Graphics initialized...");
@@ -52,7 +56,7 @@ public class RobotPaint extends JPanel {
             if (showObstacles)
                 PaintObstacles(g2d);
             if (showRobot)
-                // paintRobot(g2d);
+                //paintRobot(g2d);
                 altRobotPaint(g2d);
             if (dirVecs)
                 paintDirectionVector(g2d);
@@ -86,11 +90,19 @@ public class RobotPaint extends JPanel {
      * {@code posY}) and then rotating it by an angle of {@code theta}
      */
     public void paintRobot(Graphics2D g2d) {
+        if(auto){
+            g2d.setColor(Color.GREEN);
+        } else if(teleop){
+            g2d.setColor(Color.BLUE);
+        } else {
+            g2d.setColor(Color.MAGENTA);
+        }
 
         Rectangle rect2 = new Rectangle((int) Robot.posX - Robot.ROBOT_LENGTH / 2,
                 (int) Robot.posY - Robot.ROBOT_WIDTH / 2, Robot.ROBOT_LENGTH, Robot.ROBOT_WIDTH);
         g2d.rotate(Robot.theta * 1, (int) Robot.posX, (int) Robot.posY);
         g2d.draw(rect2);
+        g2d.rotate(Robot.theta * -1, (int) Robot.posX, (int) Robot.posY);
 
     }
 
@@ -115,7 +127,7 @@ public class RobotPaint extends JPanel {
         int length = 100;
         if (Robot.ultrasonics != null) {
 
-            for (Ultrasonic u : Robot.ultrasonics) {
+            for (Background.Robot.Sensors.Ultrasonic u : Robot.ultrasonics) {
 
                 // System.out.print(u.getDistance() + "\t\t");
                 g2d.drawLine((int) Robot.posX, (int) Robot.posY,
@@ -166,8 +178,8 @@ public class RobotPaint extends JPanel {
     public void ShowIntersection(Graphics2D g2d) {
         int r = 10;
 
-        for (GameConstraints.Line l1 : CollisionTracker.RobotLines) {
-            for (GameConstraints.Line l2 : CollisionTracker.FieldLines) {
+        for (Background.PhysicsEngine.Line l1 : CollisionTracker.RobotLines) {
+            for (Background.PhysicsEngine.Line l2 : CollisionTracker.FieldLines) {
                 Point p1 = CollisionTracker.GetPointOfIntersection(l1, l2);
                 g2d.setColor(Color.blue);
 
@@ -191,6 +203,14 @@ public class RobotPaint extends JPanel {
     }
 
     public void altRobotPaint(Graphics2D g2d) {
+        if(auto){
+            g2d.setColor(Color.GREEN);
+        } else if(teleop){
+            g2d.setColor(Color.BLUE);
+        } else {
+            g2d.setColor(Color.MAGENTA);
+        }
+
         CollisionTracker.getBoundingPoints();
         if (CollisionTracker.RobotLines != null) {
             for (Line l : CollisionTracker.RobotLines) {

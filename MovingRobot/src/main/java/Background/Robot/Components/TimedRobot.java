@@ -1,4 +1,4 @@
-package Background;
+package Background.Robot.Components;
 
 public class TimedRobot implements Runnable {
 

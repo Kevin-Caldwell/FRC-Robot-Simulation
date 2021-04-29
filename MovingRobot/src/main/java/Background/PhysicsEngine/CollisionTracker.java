@@ -1,7 +1,8 @@
-package GameConstraints;
+package Background.PhysicsEngine;
 
-import Background.Robot;
 import Background.RunRobot;
+import Background.Game.GameConstraints.FieldConstraints;
+import Background.Robot.Robot;
 import MainCode.Subsystems.DriveBase;
 
 /**
@@ -185,7 +186,6 @@ public class CollisionTracker extends Thread {
                     RunRobot.display.axis2.setX(0);
                     RunRobot.display.axis2.setY(0);
                 }
-
             }
         }
     }

@@ -1,17 +1,22 @@
 package MainCode.Commands;
 
-import Background.Command;
+import Background.Robot.Components.Command;
 import MainCode.Robot;
 import MainCode.Subsystems.DriveBase;
 
 public class TurnCommand extends Command{
     double initialAngle;
-    public TurnCommand() {
+    double angle;
+
+    public TurnCommand(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         super();
         System.out.println("superclass called");
+
         initialAngle = Robot.angleReader.getAngle();
+        this.angle = angle;
+
         initialize();
     }
 
@@ -21,33 +26,30 @@ public class TurnCommand extends Command{
 
         super.initialize();
     }
-
+    
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
         // System.out.println("Running execute");
-        System.err.println(Robot.angleReader.getAngle());
-        if(Math.abs(Robot.angleReader.getAngle() - initialAngle) >= Math.PI / 4){
-            end();
-            
-        }
-
+        
         double inputL = -1;
         double inputR = 1;
-
+        
+        //.println(Robot.angleReader.getAngle() - initialAngle);
+        
         DriveBase.runLeftSideDrive(inputL);
         DriveBase.runRightSideDrive(inputR);
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     public boolean isFinished() {
-        return false;
+        return (Math.abs(Robot.angleReader.getAngle() - initialAngle) >= angle);
     }
-
+    
     // Called once after isFinished returns true
     public void end() {
-
+        new DriveForward();
     }
-
+    
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     public void interrupted() {

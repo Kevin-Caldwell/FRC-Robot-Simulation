@@ -1,10 +1,12 @@
-package Background;
+package Background.Input.Listeners.MouseListeners;
 
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
 
-public class PointerTracker2 implements MouseInputListener {
+import Background.RunRobot;
+
+public class PointerTracker1 implements MouseInputListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -15,8 +17,8 @@ public class PointerTracker2 implements MouseInputListener {
     @Override
     public void mousePressed(MouseEvent e) {
         // System.out.println("Pressed" + e.getPoint());
-        RunRobot.display.axis2.setX(50 - e.getX());
-        RunRobot.display.axis2.setY(50 - e.getY());
+        RunRobot.display.axis1.setX(50 - e.getX());
+        RunRobot.display.axis1.setY(50 - e.getY());
     }
 
     @Override
